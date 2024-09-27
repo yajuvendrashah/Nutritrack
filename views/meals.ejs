@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meals - NutriTrack</title>
+    <link rel="stylesheet" href="/dashboard.css">
+    <link rel="stylesheet" href="/meals.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-leaf"></i> NutriTrack</h1>
+            <nav class="dashboard-nav">
+                <a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="/NutriAi"><i class="fas fa-robot"></i> NutriAi</a>
+                <a href="/meals" class="active"><i class="fas fa-utensils"></i> Meals</a>
+                <a href="/fitness"><i class="fas fa-dumbbell"></i> Fitness</a>
+                <a href="#"><i class="fas fa-chart-line"></i> Progress</a>
+            </nav>
+            <button onclick="location.href='/'" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </header>
+        <main>
+            <section class="meals-overview">
+                <h2>Today's Meals</h2>
+                <div class="meals-list">
+                    <% meals.forEach(meal => { %>
+                        <div class="meal-card">
+                            <h3><i class="fas fa-utensils"></i> <%= meal.name %></h3>
+                            <p><i class="fas fa-fire"></i> <%= meal.calories %> calories</p>
+                            <p><i class="fas fa-clock"></i> <%= meal.time %></p>
+                        </div>
+                    <% }); %>
+                </div>
+            </section>
+            <section class="add-meal">
+                <h2>Add New Meal</h2>
+                <form class="add-meal-form">
+                    <input type="text" placeholder="Meal name" required>
+                    <input type="number" placeholder="Calories" required>
+                    <input type="time" required>
+                    <button type="submit" class="action-btn"><i class="fas fa-plus"></i> Add Meal</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="/meals.js"></script>
+</body>
+</html>

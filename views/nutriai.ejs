@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriAI - Your Nutrition Assistant</title>
+    <link rel="stylesheet" href="/dashboard.css">
+    <link rel="stylesheet" href="/nutriai.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-leaf"></i> NutriTrack</h1>
+            <nav class="dashboard-nav">
+                <a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="/nutriai" class="active"><i class="fas fa-robot"></i> NutriAI</a>
+                <a href="/meals"><i class="fas fa-utensils"></i> Meals</a>
+                <a href="/fitness"><i class="fas fa-dumbbell"></i> Fitness</a>
+                <a href="/progress"><i class="fas fa-chart-line"></i> Progress</a>
+            </nav>
+            <button onclick="location.href='/logout'" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </header>
+
+        <main class="nutriai-main">
+            <section class="nutriai-header">
+                <h2><i class="fas fa-robot"></i> NutriAI</h2>
+                <p>Your personal nutrition assistant powered by AI</p>
+            </section>
+
+            <div class="chat-container">
+                <div id="chat-messages" class="chat-messages"></div>
+                <div id="typing-indicator" class="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="user-input" placeholder="Ask about nutrition, meal suggestions, or health tips...">
+                    <button id="send-button" onclick="console.log('Button clicked')"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+            <div class="quick-actions">
+                <button class="quick-action-btn" data-query="Suggest a healthy breakfast">Healthy Breakfast</button>
+                <button class="quick-action-btn" data-query="What are good sources of protein?">Protein Sources</button>
+                <button class="quick-action-btn" data-query="How can I reduce sugar intake?">Reduce Sugar</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="/nutriai.js"></script>
+</body>
+</html>

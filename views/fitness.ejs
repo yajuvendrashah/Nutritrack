@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness - NutriTrack</title>
+    <link rel="stylesheet" href="/dashboard.css">
+    <link rel="stylesheet" href="/fitness.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-leaf"></i> NutriTrack</h1>
+            <nav class="dashboard-nav">
+                <a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="/NutriAi"><i class="fas fa-robot"></i> NutriAi</a>
+                <a href="/meals"><i class="fas fa-utensils"></i> Meals</a>
+                <a href="/fitness" class="active"><i class="fas fa-dumbbell"></i> Fitness</a>
+                <a href="/progress"><i class="fas fa-chart-line"></i> Progress</a>
+            </nav>
+            <button onclick="location.href='/'" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </header>
+        <main>
+            <section class="fitness-overview">
+                <h2>Fitness Overview</h2>
+                <div class="fitness-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-running"></i>
+                        <h3>Total Workouts</h3>
+                        <p><%= stats.totalWorkouts %></p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Total Duration</h3>
+                        <p><%= stats.totalDuration %> minutes</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-fire"></i>
+                        <h3>Calories Burned</h3>
+                        <p><%= stats.totalCaloriesBurned %></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="workout-history">
+                <h2>Recent Workouts</h2>
+                <div class="workout-list">
+                    <% workouts.forEach(workout => { %>
+                        <div class="workout-card">
+                            <h3><%= workout.name %></h3>
+                            <p><i class="fas fa-clock"></i> Duration: <%= workout.duration %> minutes</p>
+                            <p><i class="fas fa-fire"></i> Calories: <%= workout.calories %></p>
+                            <p><i class="fas fa-calendar"></i> Date: <%= workout.date %></p>
+                        </div>
+                    <% }); %>
+                </div>
+            </section>
+
+            <section class="add-workout">
+                <h2>Log New Workout</h2>
+                <form class="add-workout-form">
+                    <input type="text" placeholder="Workout Name" required>
+                    <input type="number" placeholder="Duration (minutes)" required>
+                    <input type="number" placeholder="Calories Burned" required>
+                    <input type="date" required>
+                    <button type="submit" class="action-btn"><i class="fas fa-plus"></i> Add Workout</button>
+                </form>
+            </section>
+
+            <section class="workout-chart">
+                <h2>Weekly Workout Summary</h2>
+                <canvas id="workoutChart"></canvas>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Weekly Workout Chart
+        const ctx = document.getElementById('workoutChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Workout Duration (minutes)',
+                    data: [30, 45, 0, 60, 30, 90, 45],
+                    backgroundColor: '#4CAF50'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
